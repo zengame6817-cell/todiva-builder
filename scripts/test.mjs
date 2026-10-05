@@ -1,10 +1,15 @@
 import assert from 'node:assert/strict';
+import {readPower,confirmedOwned} from '../dist/screenshot.mjs';
+assert.deepEqual(readPower('8.7'),{raw:8.7,power:9,rounded:true});
+assert.equal(readPower('468 331'),null);assert.equal(readPower('0'),null);
+assert.deepEqual(confirmedOwned([{id:537,power:468,checked:true},{id:999,power:0,checked:false}],new Set([537])),{537:468});
+assert.throws(()=>confirmedOwned([{id:537,power:468,checked:true},{id:537,power:331,checked:true}],new Set([537])));
 import fs from 'node:fs';
 import{fresh,blank,total,powerOK,validSquads,validState,encodeShare,decodeShare}from'../dist/core.mjs';
 import{positionLabel,skillSummary}from'../dist/formation.mjs';
 import{formationExtras}from'../dist/formation-view.mjs';
-const data=JSON.parse(fs.readFileSync(new URL('../dist/data/cards.json',import.meta.url)));const ids=new Set(data.cards.map(c=>c.id));const id=data.cards[0].id;
-assert.equal(ids.size,data.cards.length);assert.equal(data.cards.length,234);assert.ok(data.cards.every(c=>c.dataStatus==='complete'&&c.image.startsWith('https://')&&c.skills.active));
+const data=JSON.parse(fs.readFileSync(new URL('../dist/data/cards.json',import.meta.url)));const ids=new Set(data.cards.map(c=>c.id));const id=data.cards.find(c=>c.id===537).id;
+assert.equal(ids.size,data.cards.length);assert.equal(data.cards.length,296);assert.ok(data.cards.filter(c=>c.id<100000).every(c=>c.dataStatus==='complete'&&c.image.startsWith('https://')&&c.skills.active));
 assert.equal(blank('nyan').length,1);assert.equal(blank('arena').length,4);assert.equal(blank('incident').length,4);
 for(const p of [0,-1,10000,1.5,NaN])assert.equal(powerOK(p),false);for(const p of [1,125,9999])assert.ok(powerOK(p));
 const s=fresh();s.owned[id]=125;s.current.arena[0][0]={id,power:125};s.current.arena[1][0]={id,power:9999};assert.equal(total(s.current.arena),10124);assert.deepEqual(validState(s,ids),s);
@@ -12,10 +17,10 @@ const bad=structuredClone(s.current.arena);bad[0][1]={id,power:1};assert.throws(
 const builds=[{id:'one',name:'闘技場テスト',mode:'arena',squads:s.current.arena},{id:'two',name:'にゃんうぉ',mode:'nyan',squads:blank('nyan')}];
 const token=await encodeShare(builds);const decoded=await decodeShare(token,ids);assert.equal(decoded.length,2);assert.deepEqual(decoded[0].squads,builds[0].squads);assert.equal(decoded[0].name,builds[0].name);assert.throws(()=>validSquads([[{id:999999,power:1},null,null,null,null,null]],'nyan',ids));await assert.rejects(()=>decodeShare('broken',ids));
 decoded[0].squads[0][0].power=1;assert.equal(builds[0].squads[0][0].power,125);
-console.log('PASS: 234-card database, modes, power validation, totals, duplicate rules, backup validation, compressed multi-build sharing and copy independence');
+console.log('PASS: 296-card database, modes, power validation, totals, duplicate rules, backup validation, compressed multi-build sharing and copy independence');
 const byId=new Map(data.cards.map(c=>[c.id,c]));
 assert.equal(positionLabel(3),'前衛');assert.equal(positionLabel(4),'後衛');
-assert.equal(data.cards[0].skillDetails.active[0].name,'俊敏性アップ');
+assert.equal(data.cards.find(c=>c.id===537).skillDetails.active[0].name,'俊敏性アップ');
 assert.ok(data.cards.find(c=>c.id===533).skillDetails.passive[0].requiresRear);
 assert.ok(data.cards.find(c=>c.id===533).skillDetails.unique[0].description.includes('TU'));
 assert.ok(data.cards.every(c=>!c.skills.passive?.includes('増援')||c.skillDetails.passive.some(p=>p.requiresRear)));
@@ -28,3 +33,7 @@ const html=formationExtras(board,byId);assert.ok(html.includes('前衛 · 1〜4'
 const variants=new Map([[1,{skillDetails:{passive:[{name:'スタンリベンジ',description:''}],active:[],unique:[]}}],[2,{skillDetails:{passive:[{name:'スタンリベンジ++',description:''}],active:[],unique:[]}}]]);
 assert.equal(skillSummary([[{id:1},{id:2}]],variants).groups.passive.length,2);
 console.log('PASS: front/rear boundaries, per-card and per-squad skill counts, entry conditions, distinct skill variants, 6-column previews');
+
+import{matchesCard,normalizeSearch,selectionPowerLabel}from'../dist/search.mjs';
+const ren=data.cards.find(c=>c.id===537);assert.ok(matchesCard(ren,'しらなみ'));assert.ok(matchesCard(ren,'れん'));assert.ok(matchesCard(ren,'シラナミ レン'));assert.ok(matchesCard(ren,'白波蓮'));assert.ok(matchesCard(ren,'ｼﾗﾅﾐ'));assert.equal(matchesCard(ren,'しらなみ たいが'),false);assert.equal(normalizeSearch('ＳＴＵＮ'), 'stun');assert.ok(matchesCard({name:'針条 律',skills:{passive:'スタンリベンジ++'}},'しんじょう すたん'));assert.ok(matchesCard({name:'観月 累'},'みづき'));assert.equal(selectionPowerLabel(537,{537:125}),'登録戦力：125万');assert.equal(selectionPowerLabel(537,{}),'未所持・戦力未登録');
+const audit=JSON.parse(fs.readFileSync(new URL('../card-audit.json',import.meta.url)));assert.equal(audit.addedCount,62);assert.equal(audit.unresolvedDetails.length,0);assert.equal(audit.existingMatched,233);assert.ok(audit.added.every(c=>byId.has(c.id)));assert.ok(data.cards.every(c=>c.skillDetails&&Array.isArray(c.skillDetails.passive)));console.log('PASS: full-list audit, 62 additions, kana/name matching, multiple search terms and owned selection power');
