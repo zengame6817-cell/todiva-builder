@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import {validImageSettings,cardImage,setImageSettings} from '../dist/card-images.mjs';
 import {readPower,confirmedOwned} from '../dist/screenshot.mjs';
 assert.deepEqual(readPower('8.7'),{raw:8.7,power:9,rounded:true});
 assert.equal(readPower('468 331'),null);assert.equal(readPower('0'),null);
@@ -13,6 +14,11 @@ assert.equal(ids.size,data.cards.length);assert.equal(data.cards.length,296);ass
 assert.equal(blank('nyan').length,1);assert.equal(blank('arena').length,4);assert.equal(blank('incident').length,4);
 for(const p of [0,-1,10000,1.5,NaN])assert.equal(powerOK(p),false);for(const p of [1,125,9999])assert.ok(powerOK(p));
 const s=fresh();s.owned[id]=125;s.current.arena[0][0]={id,power:125};s.current.arena[1][0]={id,power:9999};assert.equal(total(s.current.arena),10124);assert.deepEqual(validState(s,ids),s);
+const custom={537:{zoom:1.5,x:-10,y:20,src:'data:image/jpeg;base64,YQ=='}};
+assert.deepEqual(validState({...s,imageSettings:custom},ids).imageSettings,custom);
+assert.throws(()=>validImageSettings({537:{zoom:0,x:0,y:0}},ids));
+assert.throws(()=>validImageSettings({537:{zoom:1,x:0,y:0,src:'javascript:alert(1)'}},ids));
+setImageSettings(custom);assert.ok(cardImage({id:537,name:'test',image:'original'}).includes('translate(-10%,20%) scale(1.5)'));setImageSettings({});
 const bad=structuredClone(s.current.arena);bad[0][1]={id,power:1};assert.throws(()=>validSquads(bad,'arena',ids));assert.throws(()=>validState({...s,version:2},ids));
 const builds=[{id:'one',name:'闘技場テスト',mode:'arena',squads:s.current.arena},{id:'two',name:'にゃんうぉ',mode:'nyan',squads:blank('nyan')}];
 const token=await encodeShare(builds);const decoded=await decodeShare(token,ids);assert.equal(decoded.length,2);assert.deepEqual(decoded[0].squads,builds[0].squads);assert.equal(decoded[0].name,builds[0].name);assert.throws(()=>validSquads([[{id:999999,power:1},null,null,null,null,null]],'nyan',ids));await assert.rejects(()=>decodeShare('broken',ids));
