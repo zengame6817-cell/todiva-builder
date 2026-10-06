@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import{encodeOwned,decodeOwned}from'../dist/owned-share.mjs';
 import {validImageSettings,cardImage,setImageSettings} from '../dist/card-images.mjs';
 import {readPower,confirmedOwned} from '../dist/screenshot.mjs';
 assert.deepEqual(readPower('8.7'),{raw:8.7,power:9,rounded:true});
@@ -14,6 +15,11 @@ assert.equal(ids.size,data.cards.length);assert.equal(data.cards.length,296);ass
 assert.equal(blank('nyan').length,1);assert.equal(blank('arena').length,4);assert.equal(blank('incident').length,4);
 for(const p of [0,-1,10000,1.5,NaN])assert.equal(powerOK(p),false);for(const p of [1,125,9999])assert.ok(powerOK(p));
 const s=fresh();s.owned[id]=125;s.current.arena[0][0]={id,power:125};s.current.arena[1][0]={id,power:9999};assert.equal(total(s.current.arena),10124);assert.deepEqual(validState(s,ids),s);
+const received=decodeOwned(encodeOwned({537:468},'友達の手持ち'),ids);assert.deepEqual(received,{name:'友達の手持ち',owned:{537:468}});
+received.owned[537]=1;assert.equal(s.owned[537],125);
+assert.throws(()=>decodeOwned(encodeOwned({537:0},'invalid'),ids));assert.throws(()=>decodeOwned(encodeOwned({999999:5},'unknown'),ids));
+assert.throws(()=>decodeOwned('broken',ids));
+const allOwned=Object.fromEntries(data.cards.map(c=>[c.id,9999]));assert.ok(encodeOwned(allOwned,'全手持ち').length<12000);assert.deepEqual(decodeOwned(encodeOwned(allOwned,'全手持ち'),ids).owned,allOwned);
 const custom={537:{zoom:1.5,x:-10,y:20,src:'data:image/jpeg;base64,YQ=='}};
 assert.deepEqual(validState({...s,imageSettings:custom},ids).imageSettings,custom);
 assert.throws(()=>validImageSettings({537:{zoom:0,x:0,y:0}},ids));
