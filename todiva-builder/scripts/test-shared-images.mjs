@@ -1,0 +1,28 @@
+import assert from 'node:assert/strict';
+import{createSharedImages}from'../dist/shared-images.mjs';
+const ids=new Set([537]),config={enabled:true,url:'https://example.supabase.co',publishableKey:'sb_publishable_test'};
+let current=[],revision=0;
+const revisions=[];
+const server=async(url,options)=>{
+  assert.equal(options.headers.apikey,config.publishableKey);
+  assert.equal(options.headers.Authorization,undefined);
+  const action=url.split('/').at(-1),body=JSON.parse(options.body);
+  if(action==='builder_image_current')return Response.json(current);
+  if(action==='builder_image_history')return Response.json(revisions.map(r=>({revision:r.revision,created_at:r.created_at})).reverse());
+  if(body.p_expected_revision!==revision)return Response.json({message:'revision_conflict'},{status:409});
+  const settings=action==='builder_image_restore'?revisions.find(r=>r.revision===body.p_revision).settings:body.p_settings;
+  const row={card_id:537,revision:++revision,settings,created_at:new Date().toISOString()};current=[row];revisions.push(row);return Response.json(row);
+};
+const first=createSharedImages(config,ids,server),second=createSharedImages(config,ids,server);
+await first.refresh();await second.refresh();await first.save(537,{zoom:1.5,x:10,y:20});
+assert.deepEqual(first.settings[537],{zoom:1.5,x:10,y:20});
+await assert.rejects(()=>second.save(537,{zoom:2,x:0,y:0}),/他の人/);
+await second.refresh();await second.save(537,{zoom:2,x:0,y:0});
+await first.refresh();await first.restore(537,1);assert.equal(first.settings[537].zoom,1.5);
+assert.equal((await first.history(537)).length,3);
+assert.throws(()=>createSharedImages({...config,publishableKey:'sb_secret_private'},ids,server));
+await assert.rejects(()=>first.save(999,{zoom:1,x:0,y:0}));
+const invalid=createSharedImages(config,ids,async()=>Response.json([{card_id:999,revision:1,settings:{zoom:1,x:0,y:0}}]));
+await assert.rejects(()=>invalid.refresh());
+assert.equal(createSharedImages({enabled:false},ids,server).enabled,false);
+console.log('PASS: shared image API contract, conflicting clients, refresh, history, restore, validation and disabled configuration');

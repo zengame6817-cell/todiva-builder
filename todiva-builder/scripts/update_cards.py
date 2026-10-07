@@ -78,6 +78,16 @@ if __name__=='__main__':
     cards=parse_list((ROOT/'list.html').read_text(encoding='utf-8'))
     print('Character cards:',len(cards),flush=True)
     with ThreadPoolExecutor(max_workers=3) as pool: cards=list(pool.map(detail,cards))
-    data={'schemaVersion':1,'fetchedAt':time.strftime('%Y-%m-%d'),'source':BASE+'全カード一覧/','cards':cards}
+    previous_path=ROOT/'dist/data/cards.json'
+    previous=json.loads(previous_path.read_text(encoding='utf-8')) if previous_path.exists() else {}
+    previous_by_id={c['id']:c for c in previous.get('cards',[])}
+    for card in cards:
+        old=previous_by_id.get(card['id'],{})
+        if old.get('defaultImageAdjustment'):
+            for key in ['image','iconImage','detailImage','defaultImageAdjustment']:
+                if key in old: card[key]=old[key]
+    refreshed={c['id'] for c in cards}
+    cards.extend(c for c in previous.get('cards',[]) if c['id'] not in refreshed)
+    data={**previous,'schemaVersion':1,'fetchedAt':time.strftime('%Y-%m-%d'),'source':BASE+'全カード一覧/','cards':cards}
     (ROOT/'dist/data/cards.json').write_text(json.dumps(data,ensure_ascii=False,indent=2),encoding='utf-8')
     print('Complete:',sum(c['dataStatus']=='complete' for c in cards),'/',len(cards),flush=True)

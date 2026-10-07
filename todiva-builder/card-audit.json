@@ -1,0 +1,448 @@
+{
+  "totalSourceCards": 295,
+  "sourceByRarity": {
+    "SSR": 249,
+    "SR": 25,
+    "R": 21
+  },
+  "existingMatched": 233,
+  "addedCount": 62,
+  "totalCards": 296,
+  "unresolvedDetails": [],
+  "added": [
+    {
+      "id": 100000,
+      "name": "衣佐美佑理",
+      "cardName": "黒死降る街の救い手",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100001,
+      "name": "草薙伯玖",
+      "cardName": "無明を断つ刃",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100002,
+      "name": "加賀見昴流",
+      "cardName": "雪夜に佇む刃",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100003,
+      "name": "殊玉善治",
+      "cardName": "風花を抱く刃",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100004,
+      "name": "エリアス・プラット",
+      "cardName": "運命を弄ぶ指先",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100005,
+      "name": "針条律",
+      "cardName": "愛と嘘の裁判",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100006,
+      "name": "灰園翔平",
+      "cardName": "虚実を隠し味に",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100007,
+      "name": "草薙伯玖",
+      "cardName": "門前で抱える秘密",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100008,
+      "name": "星喰大我",
+      "cardName": "歪んだ心をベットして",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100009,
+      "name": "御堂亜嵐",
+      "cardName": "そこに命がある限り",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100010,
+      "name": "冠氷尋",
+      "cardName": "引き留める指先",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100011,
+      "name": "白波蓮",
+      "cardName": "灯火に透ける本音",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100012,
+      "name": "煤原未桜",
+      "cardName": "夕風にほどく職人の平穏",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100013,
+      "name": "ルーカス・エラント",
+      "cardName": "水鏡に揺れる願い",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100014,
+      "name": "艸楽陽",
+      "cardName": "悪戯猫の誘い道",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100015,
+      "name": "音無叶空",
+      "cardName": "紫煙の先に夢うつつ",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100016,
+      "name": "白波蓮",
+      "cardName": "気だるげな帽子屋",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100017,
+      "name": "桐崎次郎",
+      "cardName": "静寂に包まれた午後",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100018,
+      "name": "観月累",
+      "cardName": "月下に伸ばす指先",
+      "rarity": "SSR",
+      "dataStatus": "partial"
+    },
+    {
+      "id": 100019,
+      "name": "針条律",
+      "cardName": "賭博場の弁護士",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100020,
+      "name": "黒鷺玲音",
+      "cardName": "無法地帯の悪魔",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100021,
+      "name": "磴塔真",
+      "cardName": "氷上のルーク",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100022,
+      "name": "衣佐美佑理",
+      "cardName": "白衣の医者",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100023,
+      "name": "加賀見昴流",
+      "cardName": "幽玄の役者",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100024,
+      "name": "幻海シオン",
+      "cardName": "怪盗団の奇人",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100025,
+      "name": "草薙伯玖",
+      "cardName": "幽玄の神主",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100026,
+      "name": "歩二魁斗",
+      "cardName": "氷上のポーン",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100027,
+      "name": "艸楽陽",
+      "cardName": "怪異動物園の働き者",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100028,
+      "name": "金剛座丈",
+      "cardName": "怪盗団の神秘",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100029,
+      "name": "灰園翔平",
+      "cardName": "無法地帯の余裕系男子",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100030,
+      "name": "エリアス・プラット",
+      "cardName": "怪盗団のピエロ",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100031,
+      "name": "ルーカス・エラント",
+      "cardName": "氷上のナイト",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100032,
+      "name": "音無叶空",
+      "cardName": "怪異動物園の自由人",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100033,
+      "name": "煤原未桜",
+      "cardName": "怪盗団の便利屋",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100034,
+      "name": "エドワード・ハート",
+      "cardName": "魔境の吸血鬼",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100035,
+      "name": "観月累",
+      "cardName": "魔境の死神",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100036,
+      "name": "エリアス・プラット",
+      "cardName": "こんな愛の形を君に",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100037,
+      "name": "歩二魁斗",
+      "cardName": "台詞通りにいかなくて",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100038,
+      "name": "エドワード・ハート",
+      "cardName": "絡みつく血の契約",
+      "rarity": "SSR",
+      "dataStatus": "partial"
+    },
+    {
+      "id": 100039,
+      "name": "観月累",
+      "cardName": "湯冷め知らずの夜",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100040,
+      "name": "艸楽陽",
+      "cardName": "雨にけぶる明け方",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100041,
+      "name": "衣佐美佑理",
+      "cardName": "微睡みに溶ける診療録",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100042,
+      "name": "幻海シオン",
+      "cardName": "月の誘惑",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100043,
+      "name": "エリアス・プラット",
+      "cardName": "魔術師の誘惑",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100044,
+      "name": "ライカ・コルト",
+      "cardName": "ダイヤモンドの月影",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100045,
+      "name": "御堂亜嵐",
+      "cardName": "ダイヤモンドの残影",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100046,
+      "name": "黒鷺玲音",
+      "cardName": "エメラルドの乱反射",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100047,
+      "name": "磴塔真",
+      "cardName": "エメラルドの残光",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100048,
+      "name": "殊玉善治",
+      "cardName": "パールの幽光",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100049,
+      "name": "白波蓮",
+      "cardName": "ルビーの逆光",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100050,
+      "name": "草薙伯玖",
+      "cardName": "ルビーの燈火",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100051,
+      "name": "灰園翔平",
+      "cardName": "ペリドットの翠燈",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100052,
+      "name": "冠氷尋",
+      "cardName": "スピネルの凍光",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100053,
+      "name": "衣佐美佑理",
+      "cardName": "サファイアの青灯",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100054,
+      "name": "艸楽陽",
+      "cardName": "サファイアの陽光",
+      "rarity": "SSR",
+      "dataStatus": "partial"
+    },
+    {
+      "id": 100055,
+      "name": "ライカ・コルト",
+      "cardName": "渚に溶ける眼差し",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100056,
+      "name": "エドワード・ハート",
+      "cardName": "永劫なる夜を抱いて",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100057,
+      "name": "冠氷尋",
+      "cardName": "皇帝の着飾り",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100058,
+      "name": "エドワード・ハート",
+      "cardName": "吸血鬼の着飾り",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100059,
+      "name": "灰園翔平",
+      "cardName": "生意気な取り締まり",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100060,
+      "name": "ロミオ・スコーピウス・ルッチ",
+      "cardName": "まやかしに囚われて",
+      "rarity": "SSR",
+      "dataStatus": "complete"
+    },
+    {
+      "id": 100061,
+      "name": "草薙伯玖",
+      "cardName": "雨月に酔う今宵",
+      "rarity": "SSR",
+      "dataStatus": "partial"
+    }
+  ]
+}
