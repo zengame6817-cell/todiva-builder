@@ -4,7 +4,7 @@ import{encodeOwned,decodeOwned}from'./owned-share.mjs';
 import{cardImage,setImageSettings,mountImageEditor}from'./card-images.mjs';
 import{mountScreenshot}from'./screenshot.mjs';
 import{matchesCard,selectionPowerLabel}from'./search.mjs';
-import{formationExtras,positionNote}from'./formation-view.mjs';
+import{formationExtras,positionNote}from'./formation-view.mjs?v=1.1.1';
 import{MODES,blank,fresh,powerOK,total,validState,validBuild,encodeShare,decodeShare}from'./core.mjs';
 const $=s=>document.querySelector(s),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let sharedImages=null;
