@@ -41,7 +41,7 @@ const board=blank('arena');board[0][0]={id:entry.id,power:100};board[0][4]={id,p
 const summary=skillSummary(board,byId);const entryName=entry.skillDetails.passive[0].name;const count=summary.groups.passive.find(s=>s.name===entryName);
 assert.equal(count.count,2);assert.equal(count.front,1);assert.equal(count.rear,1);assert.equal(count.frontNeedsRear,1);assert.equal(summary.warnings.length,1);assert.equal(summary.warnings[0].squad,0);
 assert.equal(skillSummary([board[1]],byId).warnings.length,0);
-const html=formationExtras(board,byId);assert.ok(html.includes('前衛 · 1〜4'));assert.ok(html.includes('後衛 · 5〜6'));assert.ok(html.includes('スキル集計'));assert.equal((html.match(/class="compact-slot /g)||[]).length,24);
+const html=formationExtras(board,byId,true);assert.ok(html.includes('前衛 · 1〜4'));assert.ok(html.includes('後衛 · 5〜6'));assert.ok(html.includes('班ごとのスキルまとめ'));assert.ok(html.includes('第1班のスキルまとめ'));assert.ok(html.includes('data-action="pick:'));assert.ok(html.includes('カード・空き枠をタップして直接変更できます。'));assert.equal((html.match(/class="compact-slot /g)||[]).length,24);
 const variants=new Map([[1,{skillDetails:{passive:[{name:'スタンリベンジ',description:''}],active:[],unique:[]}}],[2,{skillDetails:{passive:[{name:'スタンリベンジ++',description:''}],active:[],unique:[]}}]]);
 assert.equal(skillSummary([[{id:1},{id:2}]],variants).groups.passive.length,2);
 console.log('PASS: front/rear boundaries, per-card and per-squad skill counts, entry conditions, distinct skill variants, 6-column previews');
